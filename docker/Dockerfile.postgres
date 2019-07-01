@@ -1,0 +1,7 @@
+FROM postgres:11-alpine
+
+ENV DB_NAME simplebudget
+ENV DB_PASSWORD simplebudget
+ENV DB_USER simplebudget
+
+COPY --chown=postgres:postgres docker/postgresql /docker-entrypoint-initdb.d

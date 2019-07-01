@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  simplebudget:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    image: simplebudget
+    depends_on:
+      - postgresql
+    ports:
+      - "8080:8080"
+    environment:
+      WAIT_FOR: postgresql:5432
+    volumes:
+      - gradle:/gradle/.gradle
+    networks:
+      - postgresql
+
+  postgresql:
+    image: postgres:11-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      DB_USER: simplebudget
+      DB_PASSWORD: simplebudget
+      DB_NAME: simplebudget
+    volumes:
+      - ./postgresql:/docker-entrypoint-initdb.d
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+    networks:
+      - postgresql
+
+volumes:
+  postgresql:
+  postgresql_data:
+  gradle:
+
+networks:
+  postgresql:
+    driver: bridge

@@ -1,10 +1,10 @@
 package com.typicaldev.simplebudget.dto;
 
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.Instant;
-
-@AllArgsConstructor
+@Setter
+@NoArgsConstructor
 public final class ExpenseResponseDto {
 
     private String name;

@@ -12,4 +12,6 @@ public final class ExpenseResponseDto {
     private double realValue;
 
     private double plannedValue;
+
+    private BudgetResponseDto budget;
 }

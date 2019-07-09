@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.time.Instant;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = ExpenseMapper.class)
 public abstract class BudgetMapper {
 
     public Budget toDomain(final BudgetCreateDto dto) {
@@ -19,9 +19,10 @@ public abstract class BudgetMapper {
         return budget;
     }
 
-    abstract BudgetResponseDto toDto(final Budget budget);
+    public abstract BudgetResponseDto toDto(final Budget budget);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
+    @Mapping(target = "expenses", ignore = true)
     abstract Budget toBaseDomain(final BudgetCreateDto dto);
 }

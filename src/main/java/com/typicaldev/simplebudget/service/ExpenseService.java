@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.toList;
@@ -44,8 +45,7 @@ public class ExpenseService {
     public List<ExpenseResponseDto> getExpenses() {
         final var expenses = expenseRepository.findAll();
 
-        return StreamSupport
-                .stream(expenses.spliterator(), false)
+        return expenses.stream()
                 .map(expenseMapper::toDto)
                 .collect(toList());
     }

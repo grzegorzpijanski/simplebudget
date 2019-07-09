@@ -1,8 +1,7 @@
 package com.typicaldev.simplebudget.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,13 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@Entity(name = "budget")
+@Data
+@EqualsAndHashCode(exclude = "expenses")
 public class Budget {
 
     @Id
@@ -33,5 +31,5 @@ public class Budget {
     private double value;
 
     @OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Expense> expenses;
+    private Set<Expense> expenses;
 }

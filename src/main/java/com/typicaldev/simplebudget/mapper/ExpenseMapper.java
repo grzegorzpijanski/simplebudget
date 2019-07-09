@@ -6,10 +6,11 @@ import com.typicaldev.simplebudget.model.Expense;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = BudgetMapper.class)
 public interface ExpenseMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "budget", ignore = true)
     Expense toDomain(final ExpenseCreateDto dto);
 
     ExpenseResponseDto toDto(final Expense expense);

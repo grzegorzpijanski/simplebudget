@@ -42,12 +42,18 @@ public class BudgetService {
         budgetRepository.save(budget);
     }
 
-    public List<BudgetResponseDto> getBudgets(){
+    public List<BudgetResponseDto> getBudgets() {
         final var budgets = budgetRepository.findAll();
 
         return budgets.stream()
                 .map(budget -> budgetMapper.toDto(budget))
                 .collect(toList());
+    }
+
+    public BudgetResponseDto getLatestBudget() {
+        final var budget = budgetRepository.findTopByOrderByCreatedDesc();
+
+        return budgetMapper.toDto(budget);
     }
 
     public void deleteBudget(final UUID budgetId) throws OperationNotSupportedException {

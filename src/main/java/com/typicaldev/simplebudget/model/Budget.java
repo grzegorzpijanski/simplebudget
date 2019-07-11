@@ -2,6 +2,7 @@ package com.typicaldev.simplebudget.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @Entity(name = "budget")
 @Data
 @EqualsAndHashCode(exclude = "expenses")
+@ToString(exclude = "expenses")
 public class Budget {
 
     @Id
@@ -30,6 +32,6 @@ public class Budget {
     @Column
     private double value;
 
-    @OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Expense> expenses;
 }

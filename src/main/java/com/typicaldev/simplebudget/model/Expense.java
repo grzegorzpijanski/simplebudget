@@ -3,6 +3,7 @@ package com.typicaldev.simplebudget.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @Entity(name = "expense")
 @Data
 @NoArgsConstructor
+@ToString()
 public class Expense {
 
     @Id
@@ -32,7 +34,7 @@ public class Expense {
     @Column
     private double realValue;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "budgetId", nullable = false)
     @JsonIgnore
     private Budget budget;

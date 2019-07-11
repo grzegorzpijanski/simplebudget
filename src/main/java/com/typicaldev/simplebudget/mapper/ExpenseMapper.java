@@ -13,5 +13,6 @@ public interface ExpenseMapper {
     @Mapping(target = "budget", ignore = true)
     Expense toDomain(final ExpenseCreateDto dto);
 
+
     ExpenseResponseDto toDto(final Expense expense);
 }

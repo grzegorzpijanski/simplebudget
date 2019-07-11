@@ -1,9 +1,11 @@
 package com.typicaldev.simplebudget.dto;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
+@Getter
 @NoArgsConstructor
 public final class ExpenseResponseDto {
 
@@ -12,6 +14,4 @@ public final class ExpenseResponseDto {
     private double realValue;
 
     private double plannedValue;
-
-    private BudgetResponseDto budget;
 }

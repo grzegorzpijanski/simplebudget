@@ -10,11 +10,8 @@ import com.typicaldev.simplebudget.validator.BudgetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.toList;
 
@@ -53,7 +50,7 @@ public class BudgetService {
     public BudgetResponseDto getLatestBudget() {
         final var budget = budgetRepository.findTopByOrderByCreatedDesc();
 
-        return budgetMapper.toDto(budget);
+        return budgetMapper.toDto(budget.orElse(null));
     }
 
     public void deleteBudget(final UUID budgetId) throws OperationNotSupportedException {

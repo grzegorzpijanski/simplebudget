@@ -10,9 +10,12 @@ import org.mapstruct.Mapping;
 public interface ExpenseMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "budget", ignore = true)
+    @Mapping(target = "budgetId", ignore = true)
     Expense toDomain(final ExpenseCreateDto dto);
 
 
     ExpenseResponseDto toDto(final Expense expense);
+
+    @Mapping(target = "budgetId", ignore = true)
+    ExpenseCreateDto toCreateDto(final ExpenseResponseDto dto);
 }

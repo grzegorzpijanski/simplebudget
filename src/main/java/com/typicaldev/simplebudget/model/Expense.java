@@ -34,10 +34,8 @@ public class Expense {
     @Column
     private double realValue;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "budgetId", nullable = false)
-    @JsonIgnore
-    private Budget budget;
+    @JoinColumn(name = "budget", nullable = false)
+    private UUID budgetId;
 
     public Expense(final String name, final double plannedValue, final double realValue) {
         this.name = name;

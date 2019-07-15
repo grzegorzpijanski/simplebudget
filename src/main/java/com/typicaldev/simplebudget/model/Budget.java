@@ -32,6 +32,6 @@ public class Budget {
     @Column
     private double value;
 
-    @OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "budgetId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Expense> expenses;
 }

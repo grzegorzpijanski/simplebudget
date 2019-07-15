@@ -1,6 +1,5 @@
 package com.typicaldev.simplebudget.view;
 
-import com.vaadin.flow.component.ComponentEventBus;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;

@@ -25,8 +25,10 @@ public class BudgetLayout extends VerticalLayout {
     private void initLabel() {
         final var budget = budgetService.getLatestBudget();
 
-        budgetLabel.setText(String.valueOf(budget.getValue()));
+        if (budget != null) {
+            budgetLabel.setText(String.valueOf(budget.getValue()));
 
-        add(budgetLabel);
+            add(budgetLabel);
+        }
     }
 }

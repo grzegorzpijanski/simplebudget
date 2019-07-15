@@ -1,6 +1,8 @@
 package com.typicaldev.simplebudget.form;
 
 import com.typicaldev.simplebudget.dto.ExpenseCreateDto;
+import com.typicaldev.simplebudget.event.Bus;
+import com.typicaldev.simplebudget.event.CreateExpenseEvent;
 import com.typicaldev.simplebudget.service.ExpenseService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -19,6 +21,8 @@ public class CreateExpenseForm extends FormLayout {
 
     private ExpenseService expenseService;
 
+    private Bus bus;
+
     private Binder<ExpenseCreateDto> binder = new Binder<>(ExpenseCreateDto.class);
 
     private TextField name = new TextField("Name");
@@ -28,8 +32,10 @@ public class CreateExpenseForm extends FormLayout {
     private Button saveBtn = new Button("Save");
 
     @Autowired
-    public CreateExpenseForm(final ExpenseService expenseService) {
+    public CreateExpenseForm(final ExpenseService expenseService,
+                             final Bus bus) {
         this.expenseService = expenseService;
+        this.bus = bus;
 
         saveBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
@@ -65,7 +71,7 @@ public class CreateExpenseForm extends FormLayout {
     private void save() {
         final ExpenseCreateDto dto = binder.getBean();
         expenseService.addExpense(dto);
-
+        bus.yell(new CreateExpenseEvent());
         setExpense(null);
     }
 }

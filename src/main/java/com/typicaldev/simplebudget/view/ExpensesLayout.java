@@ -23,11 +23,11 @@ public class ExpensesLayout extends VerticalLayout implements Bus.Passenger {
 
     private CreateExpenseForm createExpenseForm;
 
+    private Bus bus;
+
     private Grid<ExpenseResponseDto> expensesGrid;
 
     private Button createExpenseButton = new Button("Add new expense");
-
-    private Bus bus;
 
     @Autowired
     public ExpensesLayout(final ExpenseService expenseService,
